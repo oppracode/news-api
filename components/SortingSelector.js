@@ -1,35 +1,35 @@
 import React, { useState } from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 
-const LanguageSelector = ({ selectedLanguage, setSelectedLanguage }) => {
+const SortingSelector = ({ selectedSorting, setSelectedSorting }) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity
         style={[
           styles.button,
-          selectedLanguage === "en" && styles.buttonSelected,
+          selectedSorting === "popularity" && styles.buttonSelected,
         ]}
-        onPress={() => setSelectedLanguage("en")}
+        onPress={() => setSelectedSorting("popularity")}
       >
-        <Text style={styles.buttonText}>English</Text>
+        <Text style={styles.buttonText}>Popularity</Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={[
           styles.button,
-          selectedLanguage === "ru" && styles.buttonSelected,
+          selectedSorting === "relevancy" && styles.buttonSelected,
         ]}
-        onPress={() => setSelectedLanguage("ru")}
+        onPress={() => setSelectedSorting("relevancy")}
       >
-        <Text style={styles.buttonText}>Russian</Text>
+        <Text style={styles.buttonText}>Relevancy</Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={[
           styles.button,
-          selectedLanguage === "fr" && styles.buttonSelected,
+          selectedSorting === "publishedAt" && styles.buttonSelected,
         ]}
-        onPress={() => setSelectedLanguage("fr")}
+        onPress={() => setSelectedSorting("publishedAt")}
       >
-        <Text style={styles.buttonText}>French</Text>
+        <Text style={styles.buttonText}>Newest</Text>
       </TouchableOpacity>
     </View>
   );
@@ -62,4 +62,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LanguageSelector;
+export default SortingSelector;

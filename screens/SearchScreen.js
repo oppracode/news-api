@@ -11,6 +11,7 @@ import React, { useEffect, useState } from "react";
 import SearchBar from "../components/SearchBar";
 import LanguageSelector from "../components/LanguageSelector";
 import { SafeAreaView, SafeAreaProvider } from "react-native-safe-area-context";
+import SortingSelector from "../components/SortingSelector";
 
 export default function SearchScreen({ navigation }) {
   const [isLoading, setLoading] = useState(true);
@@ -63,6 +64,10 @@ export default function SearchScreen({ navigation }) {
             <LanguageSelector
               selectedLanguage={searchLanguage}
               setSelectedLanguage={setSearchLanguage}
+            />
+            <SortingSelector
+              selectedSorting={sortBy}
+              setSelectedSorting={setSortBy}
             />
           </View>
         )}
