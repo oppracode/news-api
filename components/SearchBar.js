@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { View, TextInput, Button, StyleSheet } from "react-native";
 
-function SearchBar() {
+function SearchBar({ onSubmit }) {
   const [searchText, setSearchText] = useState("");
-
   return (
     <View style={styles.container}>
       <TextInput
@@ -12,7 +11,7 @@ function SearchBar() {
         value={searchText}
         onChangeText={setSearchText}
       />
-      <Button title="Search" />
+      <Button title="Search" onPress={() => onSubmit(searchText)} />
     </View>
   );
 }

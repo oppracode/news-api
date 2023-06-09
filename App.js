@@ -1,22 +1,24 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, FlatList, SafeAreaView } from "react-native";
 import Card from "./components/Card";
 import React, { useEffect, useState } from "react";
 import SearchBar from "./components/SearchBar";
+import LanguageSelector from "./components/LanguageSelector";
 
 export default function App() {
   const [isLoading, setLoading] = useState(true);
   const [searchResult, setSearchResult] = useState([]);
-  const [keywords, setKeywords] = useState("Apple");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchLanguage, setSearchLanguage] = useState("en");
 
-  const getNewsApi = async () => {
+  const getNewsApi = async (query, language) => {
     try {
       const response = await fetch(
-        `https://newsapi.org/v2/everything?language=en&q=${keywords}&apiKey=85a3d13a6aaf4ed8b47dc805718c570c`
+        `https://newsapi.org/v2/everything?language=${language}&q=${query}&apiKey=132955b7216b4177b36eecbbf664306c`
       );
       const json = await response.json();
+      console.log(json);
       setSearchResult(json.articles);
-      console.log(json.articles);
     } catch (error) {
       console.error(error);
     } finally {
@@ -25,17 +27,29 @@ export default function App() {
   };
 
   useEffect(() => {
-    getNewsApi();
-  }, []);
+    getNewsApi(searchQuery, searchLanguage);
+    console.log(searchQuery);
+    console.log(searchLanguage);
+  }, [searchQuery]);
+
+  function renderItem({ item }) {
+    return <Card {...item} />;
+  }
 
   return (
-    <View data={searchResult} style={styles.container}>
-      <SearchBar />
-      {searchResult.map((article, index) => (
-        <Card key={index + 1} {...article} />
-      ))}
+    <SafeAreaView style={styles.container}>
+      <LanguageSelector
+        selectedLanguage={searchLanguage}
+        setSelectedLanguage={setSearchLanguage}
+      />
+      <SearchBar onSubmit={setSearchQuery} />
+      <FlatList
+        data={searchResult}
+        renderItem={renderItem}
+        keyExtractor={(_, index) => index}
+      />
       <StatusBar style="auto" />
-    </View>
+    </SafeAreaView>
   );
 }
 
@@ -45,6 +59,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
+    marginTop: 30,
     rowGap: 5,
   },
   logo: {
