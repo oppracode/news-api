@@ -9,13 +9,14 @@ function Card(props) {
     navigation.navigate("Details", { article });
   };
   return (
-    <TouchableOpacity onPress={() => goToDetailsScreen(props)}>
-      <View style={styles.container}>
-        <Image source={{ uri: props.urlToImage }} style={styles.image} />
-        <View style={styles.contentContainer}>
-          <Text style={styles.title}>{props.title}</Text>
-          <Text style={styles.description}>{props.description}</Text>
-        </View>
+    <TouchableOpacity
+      style={styles.container}
+      onPress={() => goToDetailsScreen(props)}
+    >
+      <Image source={{ uri: props.urlToImage }} style={styles.image} />
+      <View style={styles.textContainer}>
+        <Text style={styles.title}>{props.title}</Text>
+        <Text style={styles.description}>{props.description}</Text>
       </View>
     </TouchableOpacity>
   );
@@ -25,21 +26,19 @@ export default Card;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    flexDirection: "row",
+    flexDirection: "column",
     alignItems: "center",
     padding: 10,
     borderBottomWidth: 1,
-    width: "100%",
     borderBottomColor: "#EAEAEA",
   },
   image: {
-    width: 80,
-    height: 80,
+    width: "100%",
+    aspectRatio: 2,
     marginRight: 10,
     borderRadius: 8,
   },
-  contentContainer: {
+  textContainer: {
     flex: 1,
   },
   title: {
