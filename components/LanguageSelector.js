@@ -44,17 +44,19 @@ const styles = StyleSheet.create({
   },
   radioButton: {
     borderWidth: 1,
-    borderRadius: 10,
-    padding: 10,
+    borderRadius: 5,
+    paddingHorizontal: 12,
+    paddingVertical: 8,
     marginRight: 10,
     borderColor: "black",
     backgroundColor: "transparent",
   },
   radioButtonText: {
-    fontSize: 16,
+    fontSize: 14,
+    color: "#333333",
   },
   radioButtonSelected: {
-    backgroundColor: "lightgreen",
+    backgroundColor: "#34B27E",
   },
 });
 

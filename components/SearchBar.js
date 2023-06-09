@@ -1,5 +1,12 @@
 import React, { useState, useCallback } from "react";
-import { View, TextInput, Button, StyleSheet } from "react-native";
+import {
+  View,
+  TextInput,
+  Button,
+  StyleSheet,
+  TouchableOpacity,
+  Text,
+} from "react-native";
 
 function SearchBar({ onSubmit }) {
   const [searchText, setSearchText] = useState("");
@@ -12,7 +19,12 @@ function SearchBar({ onSubmit }) {
         onChangeText={setSearchText}
         onSubmitEditing={() => onSubmit(searchText)}
       />
-      <Button title="Search" onPress={() => onSubmit(searchText)} />
+      <TouchableOpacity
+        style={styles.searchButton}
+        onPress={() => onSubmit(searchText)}
+      >
+        <Text style={styles.searchButtonText}>Search</Text>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -33,6 +45,21 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#CCCCCC",
     borderRadius: 4,
+    height: 45,
+  },
+  searchButton: {
+    backgroundColor: "#34B27E",
+    paddingVertical: 8,
+    paddingHorizontal: 16,
+    borderRadius: 4,
+    height: 45,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  searchButtonText: {
+    color: "#FFFFFF",
+    fontSize: 14,
+    fontWeight: "bold",
   },
 });
 
