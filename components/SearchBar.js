@@ -10,6 +10,7 @@ function SearchBar({ onSubmit }) {
         placeholder="Enter search keywords"
         value={searchText}
         onChangeText={setSearchText}
+        onSubmitEditing={() => onSubmit(searchText)}
       />
       <Button title="Search" onPress={() => onSubmit(searchText)} />
     </View>
