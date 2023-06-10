@@ -7,11 +7,11 @@ import {
   TouchableOpacity,
 } from "react-native";
 import DateTimePicker from "@react-native-community/datetimepicker";
+const minimumDate = new Date("2023-05-11");
 
 function DatesSelector({ fromDate, setFromDate, toDate, setToDate }) {
   const [showPicker, setShowPicker] = useState(false);
   const [pickerType, setPickerType] = useState("from"); // "from" or "to"
-  const minimumDate = new Date("2023-05-11");
 
   function showDateTimePicker(type) {
     setPickerType(type);

@@ -1,38 +1,23 @@
 import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import data from "../data/data.json";
 
 function LanguageSelector({ selectedLanguage, setSelectedLanguage }) {
-  return (
-    <View style={styles.container}>
+  const languageElements = data.language.map((item, id) => {
+    return (
       <TouchableOpacity
+        key={id}
         style={[
           styles.button,
-          selectedLanguage === "en" && styles.buttonSelected,
+          selectedLanguage === item.code && styles.buttonSelected,
         ]}
-        onPress={() => setSelectedLanguage("en")}
+        onPress={() => setSelectedLanguage(item.code)}
       >
-        <Text style={styles.buttonText}>English</Text>
+        <Text style={styles.buttonText}>{item.name}</Text>
       </TouchableOpacity>
-      <TouchableOpacity
-        style={[
-          styles.button,
-          selectedLanguage === "ru" && styles.buttonSelected,
-        ]}
-        onPress={() => setSelectedLanguage("ru")}
-      >
-        <Text style={styles.buttonText}>Russian</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={[
-          styles.button,
-          selectedLanguage === "fr" && styles.buttonSelected,
-        ]}
-        onPress={() => setSelectedLanguage("fr")}
-      >
-        <Text style={styles.buttonText}>French</Text>
-      </TouchableOpacity>
-    </View>
-  );
+    );
+  });
+  return <View style={styles.container}>{languageElements}</View>;
 }
 
 const styles = StyleSheet.create({

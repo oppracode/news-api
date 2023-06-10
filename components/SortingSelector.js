@@ -1,38 +1,24 @@
 import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import data from "../data/data.json";
 
 function SortingSelector({ selectedSorting, setSelectedSorting }) {
-  return (
-    <View style={styles.container}>
+  const sortingElements = data.sorting.map((item, id) => {
+    return (
       <TouchableOpacity
+        key={id}
         style={[
           styles.button,
-          selectedSorting === "popularity" && styles.buttonSelected,
+          selectedSorting === item.code && styles.buttonSelected,
         ]}
-        onPress={() => setSelectedSorting("popularity")}
+        onPress={() => setSelectedSorting(item.code)}
       >
-        <Text style={styles.buttonText}>Popularity</Text>
+        <Text style={styles.buttonText}>{item.name}</Text>
       </TouchableOpacity>
-      <TouchableOpacity
-        style={[
-          styles.button,
-          selectedSorting === "relevancy" && styles.buttonSelected,
-        ]}
-        onPress={() => setSelectedSorting("relevancy")}
-      >
-        <Text style={styles.buttonText}>Relevancy</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={[
-          styles.button,
-          selectedSorting === "publishedAt" && styles.buttonSelected,
-        ]}
-        onPress={() => setSelectedSorting("publishedAt")}
-      >
-        <Text style={styles.buttonText}>Newest</Text>
-      </TouchableOpacity>
-    </View>
-  );
+    );
+  });
+
+  return <View style={styles.container}>{sortingElements}</View>;
 }
 
 const styles = StyleSheet.create({
