@@ -21,11 +21,13 @@ export default function SearchScreen({ navigation }) {
   const [searchLanguage, setSearchLanguage] = useState("en");
   const [showSubmenu, setShowSubmenu] = useState(false);
   const [sortBy, setSortBy] = useState("popularity");
+  const [fromDate, setFromDate] = useState(null);
+  const [toDate, setToDate] = useState(null);
 
-  const getNewsApi = async (query, language, sort) => {
+  const getNewsApi = async (query, language, sort, from, to) => {
     try {
       const response = await fetch(
-        `https://newsapi.org/v2/everything?language=${language}&q=${query}&sortBy=${sort}&apiKey=132955b7216b4177b36eecbbf664306c`
+        `https://newsapi.org/v2/everything?language=${language}&q=${query}&sortBy=${sort}&from=${from}&to=${to}&apiKey=132955b7216b4177b36eecbbf664306c`
       );
       const json = await response.json();
       console.log(json);
@@ -39,11 +41,8 @@ export default function SearchScreen({ navigation }) {
 
   useEffect(() => {
     if (!searchQuery) return;
-    getNewsApi(searchQuery, searchLanguage, sortBy);
-    console.log(searchQuery);
-    console.log(searchLanguage);
-    console.log(sortBy);
-  }, [searchQuery, searchLanguage, sortBy]);
+    getNewsApi(searchQuery, searchLanguage, sortBy, fromDate, toDate);
+  }, [searchQuery, searchLanguage, sortBy, fromDate, toDate]);
 
   function renderItem({ item }) {
     return <Card {...item} />;
@@ -58,7 +57,7 @@ export default function SearchScreen({ navigation }) {
       <SafeAreaView style={styles.container}>
         <SearchBar onSubmit={setSearchQuery} />
         <TouchableOpacity onPress={() => toggleSubmenu()}>
-          <Text>Show Element</Text>
+          <Text>Search Parameters</Text>
         </TouchableOpacity>
         {showSubmenu && (
           <Submenu
@@ -66,6 +65,10 @@ export default function SearchScreen({ navigation }) {
             setSearchLanguage={setSearchLanguage}
             sortBy={sortBy}
             setSortBy={setSortBy}
+            fromDate={fromDate}
+            setFromDate={setFromDate}
+            toDate={toDate}
+            setToDate={setToDate}
           />
         )}
         <FlatList
