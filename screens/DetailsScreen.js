@@ -1,17 +1,8 @@
 import React from "react";
-import {
-  View,
-  Text,
-  Button,
-  StyleSheet,
-  ScrollView,
-  Image,
-} from "react-native";
-import { useRoute } from "@react-navigation/native";
+import { View, Text, StyleSheet, ScrollView, Image } from "react-native";
 
 const DetailsScreen = ({ route }) => {
   const { article } = route.params;
-  console.log(article);
   return (
     <ScrollView style={styles.container}>
       <Image source={{ uri: article.urlToImage }} style={styles.image} />

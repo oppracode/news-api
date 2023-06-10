@@ -1,11 +1,10 @@
+import React, { useNavigation } from "@react-navigation/native";
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
-import { useNavigation } from "@react-navigation/native";
 
 function Card(props) {
   const navigation = useNavigation();
 
-  const goToDetailsScreen = (article) => {
-    console.log("HIII");
+  const goToDetailsScreen = article => {
     navigation.navigate("Details", { article });
   };
   return (

@@ -44,10 +44,10 @@ function DatesSelector({ fromDate, setFromDate, toDate, setToDate }) {
     const adjustedDate = adjustDate(selectedDate);
     setFromDate(adjustedDate ? adjustedDate.toISOString().split("T")[0] : null);
   }
-  const handleToChange = (event, selectedDate) => {
+  function handleToChange(event, selectedDate) {
     const adjustedDate = adjustDate(selectedDate);
     setToDate(adjustedDate ? adjustedDate.toISOString().split("T")[0] : null);
-  };
+  }
 
   function renderDatePicker() {
     return (

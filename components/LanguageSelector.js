@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 
-const LanguageSelector = ({ selectedLanguage, setSelectedLanguage }) => {
+function LanguageSelector({ selectedLanguage, setSelectedLanguage }) {
   return (
     <View style={styles.container}>
       <TouchableOpacity
@@ -33,7 +33,7 @@ const LanguageSelector = ({ selectedLanguage, setSelectedLanguage }) => {
       </TouchableOpacity>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {

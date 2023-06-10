@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 
-const SortingSelector = ({ selectedSorting, setSelectedSorting }) => {
+function SortingSelector({ selectedSorting, setSelectedSorting }) {
   return (
     <View style={styles.container}>
       <TouchableOpacity
@@ -33,7 +33,7 @@ const SortingSelector = ({ selectedSorting, setSelectedSorting }) => {
       </TouchableOpacity>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {

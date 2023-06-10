@@ -1,21 +1,11 @@
-//import { StatusBar } from "expo-status-bar";
-import {
-  StyleSheet,
-  Text,
-  View,
-  FlatList,
-  TouchableOpacity,
-} from "react-native";
+import { StyleSheet, Text, FlatList, TouchableOpacity } from "react-native";
 import Card from "../components/Card";
 import React, { useEffect, useState } from "react";
 import SearchBar from "../components/SearchBar";
-import LanguageSelector from "../components/LanguageSelector";
 import { SafeAreaView, SafeAreaProvider } from "react-native-safe-area-context";
-import SortingSelector from "../components/SortingSelector";
 import Submenu from "../components/Submenu";
 
-export default function SearchScreen({ navigation }) {
-  const [isLoading, setLoading] = useState(true);
+function SearchScreen() {
   const [searchResult, setSearchResult] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [searchLanguage, setSearchLanguage] = useState("en");
@@ -24,7 +14,7 @@ export default function SearchScreen({ navigation }) {
   const [fromDate, setFromDate] = useState(null);
   const [toDate, setToDate] = useState(null);
 
-  const getNewsApi = async (query, language, sort, from, to) => {
+  async function getNewsApi(query, language, sort, from, to) {
     try {
       const response = await fetch(
         `https://newsapi.org/v2/everything?language=${language}&q=${query}&sortBy=${sort}&from=${from}&to=${to}&apiKey=132955b7216b4177b36eecbbf664306c`
@@ -34,10 +24,8 @@ export default function SearchScreen({ navigation }) {
       setSearchResult(json.articles);
     } catch (error) {
       console.error(error);
-    } finally {
-      setLoading(false);
     }
-  };
+  }
 
   useEffect(() => {
     if (!searchQuery) return;
@@ -94,3 +82,5 @@ const styles = StyleSheet.create({
     height: 58,
   },
 });
+
+export default SearchScreen;
