@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import SearchBar from "../components/SearchBar";
 import { SafeAreaView, SafeAreaProvider } from "react-native-safe-area-context";
 import Submenu from "../components/Submenu";
+import getNewsAPI from "../utils/getNewsAPI";
 
 function SearchScreen() {
   const [searchResult, setSearchResult] = useState([]);
@@ -14,23 +15,25 @@ function SearchScreen() {
   const [fromDate, setFromDate] = useState(null);
   const [toDate, setToDate] = useState(null);
 
-  async function getNewsApi(query, language, sort, from, to) {
-    try {
-      const response = await fetch(
-        `https://newsapi.org/v2/everything?language=${language}&q=${query}&sortBy=${sort}&from=${from}&to=${to}&apiKey=132955b7216b4177b36eecbbf664306c`
-      );
-      const json = await response.json();
-      console.log(json);
-      setSearchResult(json.articles);
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
   useEffect(() => {
     if (!searchQuery) return;
-    getNewsApi(searchQuery, searchLanguage, sortBy, fromDate, toDate);
+    fetchData();
   }, [searchQuery, searchLanguage, sortBy, fromDate, toDate]);
+
+  async function fetchData() {
+    try {
+      const result = await getNewsAPI({
+        query: searchQuery,
+        language: searchLanguage,
+        sort: sortBy,
+        from: fromDate,
+        to: toDate,
+      });
+      setSearchResult(result);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   function renderItem({ item }) {
     return <Card {...item} />;

@@ -24,8 +24,10 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-between",
+    justifyContent: "center",
     paddingHorizontal: 20,
+    flexWrap: "wrap",
+    rowGap: 10,
   },
   button: {
     borderWidth: 1,
@@ -35,7 +37,7 @@ const styles = StyleSheet.create({
     marginRight: 10,
     borderColor: "black",
     backgroundColor: "transparent",
-    width: 90,
+    width: "30%",
     height: 40,
     alignItems: "center",
     justifyContent: "center",

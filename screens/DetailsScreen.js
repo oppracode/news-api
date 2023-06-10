@@ -7,12 +7,20 @@ const DetailsScreen = ({ route }) => {
     <ScrollView style={styles.container}>
       <Image source={{ uri: article.urlToImage }} style={styles.image} />
       <View style={styles.contentContainer}>
-        <Text style={styles.title}>{article.title}</Text>
-        <Text style={styles.author}>By {article.author}</Text>
-        <Text style={styles.description}>{article.description}</Text>
-        <Text style={styles.content}>{article.content}</Text>
-        <Text style={styles.date}>Published at: {article.publishedAt}</Text>
-        <Text style={styles.source}>Source: {article.source.name}</Text>
+        <Text style={styles.title}>{article.title || "No title"}</Text>
+        <Text style={styles.author}>By {article.author || "No author"}</Text>
+        <Text style={styles.description}>
+          {article.description || "No article description"}
+        </Text>
+        <Text style={styles.content}>
+          {article.content || "No article content"}
+        </Text>
+        <Text style={styles.date}>
+          Published at: {article.publishedAt || "No publishing date"}
+        </Text>
+        <Text style={styles.source}>
+          Source: {article.source.name || "No source"}
+        </Text>
       </View>
     </ScrollView>
   );
