@@ -76,29 +76,45 @@ function DatesSelector({ fromDate, setFromDate, toDate, setToDate }) {
       <View style={styles.iosDate}>
         <View style={styles.iosDateElement}>
           <Text style={styles.iosText}>Search From</Text>
-          <DateTimePicker
-            testID="fromDateTimePicker"
-            value={fromDate ? new Date(fromDate + "T00:00:00") : new Date()}
-            minimumDate={minimumDate}
-            mode="date"
-            is24Hour={true}
-            onChange={(event, selectedDate) =>
-              handleFromChange(event, selectedDate)
-            }
-          />
+          <View style={styles.iosDateButtonsContainer}>
+            <DateTimePicker
+              testID="fromDateTimePicker"
+              value={fromDate ? new Date(fromDate + "T00:00:00") : new Date()}
+              minimumDate={minimumDate}
+              mode="date"
+              is24Hour={true}
+              onChange={(event, selectedDate) =>
+                handleFromChange(event, selectedDate)
+              }
+            />
+            <TouchableOpacity
+              style={styles.buttonSmall}
+              onPress={() => setFromDate(null)}
+            >
+              <Text>Reset</Text>
+            </TouchableOpacity>
+          </View>
         </View>
         <View style={styles.iosDateElement}>
           <Text style={styles.iosText}>Search To </Text>
-          <DateTimePicker
-            testID="toDateTimePicker"
-            value={toDate ? new Date(toDate + "T00:00:00") : new Date()}
-            minimumDate={minimumDate}
-            mode="date"
-            is24Hour={true}
-            onChange={(event, selectedDate) =>
-              handleToChange(event, selectedDate)
-            }
-          />
+          <View style={styles.iosDateButtonsContainer}>
+            <DateTimePicker
+              testID="toDateTimePicker"
+              value={toDate ? new Date(toDate + "T00:00:00") : new Date()}
+              minimumDate={minimumDate}
+              mode="date"
+              is24Hour={true}
+              onChange={(event, selectedDate) =>
+                handleToChange(event, selectedDate)
+              }
+            />
+            <TouchableOpacity
+              style={styles.buttonSmall}
+              onPress={() => setToDate(null)}
+            >
+              <Text>Reset</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     );
@@ -205,8 +221,13 @@ const styles = StyleSheet.create({
     rowGap: 10,
     borderWidth: 1,
     borderRadius: 5,
-    width: 200,
+    width: 300,
     height: 75,
+  },
+  iosDateButtonsContainer: {
+    flex: 0,
+    flexDirection: "row",
+    columnGap: 10,
   },
   dateContainer: {
     flex: 0,
