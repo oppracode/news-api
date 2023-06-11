@@ -1,0 +1,30 @@
+{
+  "language": [
+    {
+      "code": "en",
+      "name": "English"
+    },
+    {
+      "code": "es",
+      "name": "Spanish"
+    },
+    {
+      "code": "fr",
+      "name": "French"
+    }
+  ],
+  "sorting": [
+    {
+      "code": "popularity",
+      "name": "Popularity"
+    },
+    {
+      "code": "relevancy",
+      "name": "Relevancy"
+    },
+    {
+      "code": "publishedAt",
+      "name": "Newest"
+    }
+  ]
+}
